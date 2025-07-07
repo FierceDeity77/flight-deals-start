@@ -28,7 +28,7 @@ class NotificationManager:
             from_='+12406812118',
             body=f"Subject:Low price alert!\n\nCheapest price for {self.city} from: {self.departure} to "
                  f"{self.city} Only {self.currency}{self.total}",
-            to='+639276621036'
+            to=''
         )
 
         print(message.status)
