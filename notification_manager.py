@@ -6,8 +6,8 @@ import os
 
 load_dotenv()
 
-my_email = "ljamesceleste@gmail.com"
-password = "aswnpzvilrnucjok"
+my_email = ""
+password = ""
 
 twilio_account_sid = os.getenv("E_twilio_account_sid")
 twilio_auth_token = os.getenv("E_twilio_auth_token")
