@@ -2,8 +2,7 @@ import requests
 from datetime import timedelta, datetime
 from data_manager import DataManager  # imported the data_manager module
 from flight_data import FlightData
-
-amadeus_endpoint_flights = "https://test.api.amadeus.com/v2/shopping/flight-offers"
+import os
 
 
 class FlightSearch:
@@ -47,7 +46,7 @@ class FlightSearch:
                 "travelClass": "ECONOMY"
             }
 
-            response = requests.get(amadeus_endpoint_flights, params=flight_parameters, headers=auth_parameter)
+            response = requests.get(os.getenv("AMADEUS_ENDPOINT_FLIGHTS"), params=flight_parameters, headers=auth_parameter)
             response.raise_for_status()
 
             raw_data = response.json()["data"]
@@ -81,16 +80,7 @@ class FlightSearch:
 
 
 
-             # for flight in data["data"]:
-             #        price = float(flight["price"]["grandTotal"])
-             #        if price < lowest_price:
-             #            lowest_price = price
-             #            origin = flight["itineraries"][0]["segments"][0]["departure"]["iataCode"]
-             #            destination = flight["itineraries"][0]["segments"][0]["arrival"]["iataCode"]
-             #            out_date = flight["itineraries"][0]["segments"][0]["departure"]["at"].split("T")[0]
-             #            return_date = flight["itineraries"][1]["segments"][0]["departure"]["at"].split("T")[0]
-             #            cheapest_flight = FlightData(lowest_price, origin, destination, out_date, return_date)
-             #            print(f"Lowest price to {destination} is £{lowest_price}")
+
 
 
 
