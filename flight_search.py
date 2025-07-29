@@ -28,8 +28,10 @@ class FlightSearch:
         }
 
         user_flight_list = self.user_flight_data.get_data()  # list from data_manager module
+
         # user_flight_list = [{'city': 'Paris', 'iataCode': 'PAR', 'lowestPrice': 40000, 'id': 2},
         #                     {'city': 'Tokyo', 'iataCode': 'TYO', 'lowestPrice': 40000, 'id': 4}]
+
         for data in user_flight_list:
             self.city_name = data["city"]
             city = data["iataCode"]

@@ -9,7 +9,7 @@ f_search = FlightSearch(d_manager)  # passes the d_manager object
 notify = NotificationManager(f_search)
 
 if f_search.deal_found:
-    notify.send_sms()
+    # notify.send_sms()
     notify.send_email()
 
 

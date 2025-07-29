@@ -6,12 +6,6 @@ import os
 
 load_dotenv()
 
-my_email = ""
-password = ""
-
-twilio_account_sid = os.getenv("E_twilio_account_sid")
-twilio_auth_token = os.getenv("E_twilio_auth_token")
-
 
 class NotificationManager:
     def __init__(self, flight_s: FlightSearch):
@@ -23,7 +17,7 @@ class NotificationManager:
         self.total = None
 
     def send_sms(self):
-        client = Client(twilio_account_sid, twilio_auth_token)
+        client = Client(os.getenv("E_twilio_account_sid"), os.getenv("E_twilio_auth_token"))
         message = client.messages.create(
             from_='+12406812118',
             body=f"Subject:Low price alert!\n\nCheapest price for {self.city} from: {self.departure} to "
@@ -44,9 +38,9 @@ class NotificationManager:
 
             with smtplib.SMTP("smtp.gmail.com", 587) as connection:
                 connection.starttls()  # Transport layer security - makes connection secure
-                connection.login(user=my_email, password=password)
-                connection.sendmail(from_addr=my_email,
-                                    to_addrs="lj_lightspear@yahoo.com",
+                connection.login(user=os.getenv("E_my_email"), password=os.getenv("E_mail_pw"))
+                connection.sendmail(from_addr=os.getenv("E_my_email"),
+                                    to_addrs=os.getenv("E_my_email"),
                                     msg=f"Subject:Low price alert!\n\nCheapest price for {self.city} "
                                         f"from: {self.departure} to {self.city} Only {self.currency}{self.total}")
 
